@@ -2,7 +2,7 @@
 <div class="container pl-20 pr-20 mx-auto">
   <div class="grid grid-cols-2 gap-4 h-110 pt-20 pb-20 justify-center items-cente mx-auto">
     <div class="flex items-center space-x-4 justify-left">
-      <img src="./assets/icon.png" alt="Icon Image" class="w-10">
+      <img src="./assets/icon.webp" alt="Icon Image" class="w-10">
       <p class="font-pretendard text-custom-black text-3xl">Treefy</p>
     </div>
     <div class="flex items-center space-x-4 justify-end whitespace-nowrap">
@@ -19,7 +19,7 @@
   <div class="mt-20">
     <div class="h-0.5 w-full bg-custom-gray border-solid opacity-10"></div>
     <div class="flex items-center justify-center p-10">
-      <img src="./assets/icon.png" alt="" class="w-8 h-10 mr-2">
+      <img src="./assets/icon.webp" alt="" class="w-8 h-10 mr-2">
       <p class="font-pretendard text-custom-gray">@ 2023 Treefy, inc.</p>
     </div>
   </div>
