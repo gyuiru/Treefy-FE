@@ -1,21 +1,31 @@
+# Node.js
+node_modules/
+
+# Output of the 'npm' package manager
+npm-debug.log
+yarn-error.log
+
+# OS-specific files
 .DS_Store
-node_modules
-/dist
+Thumbs.db
 
+# Compiled output
+/dist/
+/*.js
+/*.js.map
 
-# local env files
-.env.local
-.env.*.local
+# Pinia store
+/src/store/*.js
+/src/store/*.js.map
 
-# Log files
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
+# Tailwind CSS build output
+/tailwind.config.js
+/tailwind.css
+/.cache/
 
 # Editor directories and files
-.idea
-.vscode
+.idea/
+.vscode/
 *.suo
 *.ntvs*
 *.njsproj
