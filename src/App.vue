@@ -6,9 +6,9 @@
         <p class="font-pretendard text-custom-black text-3xl">Treefy</p>
       </div>
       <div class="flex items-center space-x-4 justify-end whitespace-nowrap">
-        <p class="font-pretendard text-custom-gray pr-10">Home</p>
+        <router-link to="/"><p class="font-pretendard text-custom-gray pr-10">Home</p></router-link>
         <p class="font-pretendard text-custom-gray pr-10">소식</p>
-        <p class="font-pretendard text-custom-gray pr-10">봉사신청</p>
+        <router-link to="/list"><p class="font-pretendard text-custom-gray pr-10">봉사신청</p></router-link>
         <p class="font-pretendard text-custom-gray pr-10">갤러리</p>
         <p class="font-pretendard text-custom-gray pr-10">마이페이지</p>
         <p class="font-pretendard text-custom-gray pr-10">Sign up</p>
