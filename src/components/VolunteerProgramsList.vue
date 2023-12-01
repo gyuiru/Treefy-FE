@@ -7,7 +7,7 @@
     <div class="text-center p-10 pb-20">
       <router-link to="/list/join" class="bg-custom-btn-green rounded-l-lg p-3 pl-7 pr-7 text-black font-pretendard font-bold">참여하기</router-link>
       <router-link to="/list/closed" class="bg-gray-100 p-3 pl-7 pr-7 text-black font-pretendard">참여마감</router-link>
-      <router-link to="" class="bg-gray-100 rounded-r-lg p-3 pl-7 pr-7 text-black font-pretendard">자주 묻는 질문</router-link>
+      <router-link to="/list/faq" class="bg-gray-100 rounded-r-lg p-3 pl-7 pr-7 text-black font-pretendard">자주 묻는 질문</router-link>
     </div>
     <router-view></router-view>
   </div>
