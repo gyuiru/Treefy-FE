@@ -16,7 +16,8 @@
       </div>
     </div>
     <router-view></router-view>
-    <div class="mt-20">
+    <div class="mt-20 relative">
+      <button @click="scrollTop" class="w-14 h-14 absolute bottom-36 right-5"><img src="./assets/link_top.webp" alt="link_top"></button>
       <div class="h-0.5 w-full bg-custom-gray border-solid opacity-10"></div>
       <div class="flex items-center justify-center p-10">
         <img src="./assets/icon.webp" alt="" class="w-8 h-10 mr-2">
@@ -31,9 +32,18 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: "App",
-  components: {},
-});
+  setup() {
+    function scrollTop() {
+      window.scrollTo({ top: 0 });
+    }
+
+    return {
+      scrollTop,
+    }
+  }
+})
 </script>
 
-<style></style>
+<style>
+  
+</style>
