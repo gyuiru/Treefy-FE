@@ -4,6 +4,7 @@ import VolunteerProgramsList from './components/VolunteerProgramsList.vue';
 import Join from './components/Join.vue';
 import Closed from './components/Closed.vue';
 import Faq from './components/Faq.vue';
+import Write from './components/Write.vue';
 
 const routes = [
   {
@@ -27,7 +28,11 @@ const routes = [
           component: Faq,
         },
       ]
-  }
+  },
+  {
+    path: "/write",
+    component: Write,
+  },
 
 ];
 const router = createRouter({
