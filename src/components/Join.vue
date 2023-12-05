@@ -2,6 +2,7 @@
   <div class="container min-w-full">
     <div class="flex justify-between items-center mb-4">
       <p class="font-pretendard font-bold text-xl">참여 가능한 봉사활동</p>
+      <router-link to="/write" class="bg-custom-btn-green rounded p-3 pl-7 pr-7 text-white font-pretendard">모집 글 작성</router-link>
       <div>
         <select class="font-pretendard border rounded h-12 w-32 mr-3">
           <option value="value1">지역</option>
@@ -18,20 +19,45 @@
         <p>번호</p>
         <p class="col-span-3">제목</p>
         <p>작성자</p>
-        <p>등록일</p>
+        <p>작성일</p>
       </div>
       <div class="h-0.5 w-full bg-custom-gray border-solid opacity-10"></div>
-      <div>여기에 작성한 글 보여줌</div>
+      <div v-for="(a,i) in fetchedPosts" :key="i">
+        <div class="grid grid-cols-6 p-5">
+          <span>{{ fetchedPosts[i].id }}</span>
+          <span @click="$router.push(`detail/${ i }`)" class="col-span-3">{{ fetchedPosts[i].title }}</span>
+          <span>작성자 미정</span>
+          <span>{{ fetchedPosts[i].created_date }}</span>
+        </div>
+        <div class="h-0.5 w-full bg-custom-gray border-solid opacity-10"></div>
+      </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, ref } from 'vue';
+import { useStore } from '../store';
+
+interface fetchedPosts {
+  [key: string]: string | number;
+}
 
 export default defineComponent({
-  name : "Join",
-  components : {},
+  setup() {
+    const store = useStore();
+    const fetchedPosts = ref<fetchedPosts[]>([]);
+
+    async function fetchPosts() {
+      fetchedPosts.value = await store.fetchPosts();
+      console.log(fetchedPosts.value);
+    }
+    fetchPosts();
+
+    return {
+      fetchedPosts,
+    }
+  }
 })
 </script>
 

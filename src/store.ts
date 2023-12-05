@@ -7,14 +7,18 @@ interface Post {
   content: string;
 }
 
+interface fetchedPosts {
+  [key: string]: string | number;
+}
+
 export const useStore = defineStore('main', {
 
   state: () => ({
+    // asdf, // 데이터 넣기 (이름이 같기에 : 안쓰고 하나로 씀);
     post: {
       title: '',
       content: ''
-    } as Post
-          // asdf, // 데이터 넣기 (이름이 같기에 : 안쓰고 하나로 씀);
+    } as Post,
           
   }),
   actions: {  //actions
@@ -27,6 +31,18 @@ export const useStore = defineStore('main', {
         console.log(error);
       }
     },
+    async fetchPosts(): Promise<fetchedPosts[]>{
+      try {
+        const response = await axios.get('/api/list');
+        console.log('데이터 성공적으로 가져옴');
+        console.log(response.data);
+        return response.data;
+      } catch (error) {
+        console.log(error);
+        return [];
+      }
+    },
+
   },
 
   //getters
