@@ -6,6 +6,7 @@ import Closed from './components/Closed.vue';
 import Faq from './components/Faq.vue';
 import Write from './components/Write.vue';
 import Detail from './components/Detail.vue';
+import Edit from './components/Edit.vue';
 
 const routes = [
   {
@@ -37,6 +38,10 @@ const routes = [
   {
     path: "/list/detail/:id",
     component: Detail,
+  },
+  {
+    path: "/edit/:id",
+    component: Edit,
   },
 
 ];

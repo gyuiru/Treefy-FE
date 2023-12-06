@@ -15,6 +15,10 @@ interface fetchedPostsDetail {
   [key: string]: string | number;
 }
 
+interface FetchedPostsEdit {
+  [key: string]: string | number;
+}
+
 export const useStore = defineStore('main', {
 
   state: () => ({
@@ -55,6 +59,27 @@ export const useStore = defineStore('main', {
       } catch (error) {
         console.log(error);
         return [];
+      }
+    },
+    async fetchPostsEdit(id: string | string[]): Promise<FetchedPostsEdit[]>{
+      try {
+        const response = await axios.get(`/api/edit/${id}`);
+        console.log('글 상세 데이터 성공적으로 가져옴');
+        console.log(response.data);
+        return response.data;
+      } catch (error) {
+        console.log(error);
+        return [];
+      }
+    },
+    async editPost(post: Post, id: string | string[]) {
+      this.post = post;
+      console.log(id);
+      try {
+        const response = await axios.put(`/api/edit/${id}`, post);
+        console.log(response.data);
+      } catch (error) {
+        console.log(error);
       }
     },
     

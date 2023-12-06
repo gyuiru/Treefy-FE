@@ -25,7 +25,7 @@
       <div v-for="(a,i) in fetchedPosts" :key="i">
         <div class="grid grid-cols-6 p-5">
           <span>{{ fetchedPosts[i].id }}</span>
-          <span @click="$router.push(`detail/${ i }`)" class="col-span-3">{{ fetchedPosts[i].title }}</span>
+          <span @click="$router.push(`detail/${ i + 1 }`)" class="col-span-3">{{ fetchedPosts[i].title }}</span>
           <span>작성자 미정</span>
           <span>{{ fetchedPosts[i].created_date }}</span>
         </div>
