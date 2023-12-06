@@ -5,7 +5,7 @@
       <input v-model="post.title" type="text" class="focus:outline-none resize-none text-lg font-pretendard pl-10 pr-10 p-3 mb-3 border-2 border-gray-300 rounded w-3/5" placeholder="제목">
       <textarea v-model="post.content" type="text" class="focus:outline-none resize-none text-lg font-pretendard p-10 border-2 border-gray-300 rounded w-3/5 h-96" placeholder="내용"></textarea>
     </div>
-    <router-link to="/list" class="bg-custom-btn-green rounded p-3 pl-10 pr-10 m-3 text-white font-pretendard">취소</router-link>
+    <router-link to="/list/join" class="bg-custom-btn-green rounded p-3 pl-10 pr-10 m-3 text-white font-pretendard inline-block">취소</router-link>
     <button @click="submitPost" class="bg-custom-btn-green rounded p-3 pl-10 pr-10 m-3 text-white font-pretendard">등록</button>
   </div>
 </template>
