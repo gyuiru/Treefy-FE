@@ -5,13 +5,14 @@
         <span class="mr-3">글 테마</span>
         <div class="h-6 bg-gray-500 w-0.5"></div>
         <span class="ml-3">{{ fetchedPostsDetail[0].created_date }}</span>
+        <router-link :to="`/edit/${ fetchedPostsDetail[0].id }`" class="bg-custom-btn-green hover:bg-custom-btn-green-hover rounded-full py-1 pl-3 pr-3 text-white font-pretendard inline-block absolute right-1/3">수정</router-link>
       </div>
       <h3 class="font-pretendard font-bold text-4xl mt-8">{{ fetchedPostsDetail[0].title }}</h3>
       <span class="mt-10">모집 기간</span>
     </div>
     <div class="bg-gray-50 mx-60 my-20 h-auto text-center">{{ fetchedPostsDetail[0].content }}</div>
     <div class="text-center">
-      <router-link to="/list" class="bg-custom-btn-green hover:bg-custom-btn-green-hover rounded p-3 pl-10 pr-10 m-3 text-white font-pretendard inline-block">목록 보기</router-link>
+      <router-link to="/list/join" class="bg-custom-btn-green hover:bg-custom-btn-green-hover rounded p-3 pl-10 pr-10 m-3 text-white font-pretendard inline-block">목록 보기</router-link>
       <button class="bg-custom-btn-green hover:bg-custom-btn-green-hover rounded p-3 pl-10 pr-10 m-3 text-white font-pretendard">지원하기</button>
     </div>
   </div>
