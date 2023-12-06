@@ -5,7 +5,10 @@
         <span class="mr-3">글 테마</span>
         <div class="h-6 bg-gray-500 w-0.5"></div>
         <span class="ml-3">{{ fetchedPostsDetail[0].created_date }}</span>
-        <router-link :to="`/edit/${ fetchedPostsDetail[0].id }`" class="bg-custom-btn-green hover:bg-custom-btn-green-hover rounded-full py-1 pl-3 pr-3 text-white font-pretendard inline-block absolute right-1/3">수정</router-link>
+        <div class="absolute right-96">
+          <router-link :to="`/edit/${ fetchedPostsDetail[0].id }`" class="bg-custom-btn-green hover:bg-custom-btn-green-hover rounded-full py-1 pl-3 pr-3 text-white font-pretendard inline-block">수정</router-link>
+          <button @click="deletePost" class="bg-red-500 hover:bg-red-700 rounded-full py-1 pl-3 pr-3 text-white font-pretendard ml-5">삭제</button>
+        </div>
       </div>
       <h3 class="font-pretendard font-bold text-4xl mt-8">{{ fetchedPostsDetail[0].title }}</h3>
       <span class="mt-10">모집 기간</span>
@@ -21,7 +24,7 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 import { useStore } from '../store';
-import { useRoute } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 
 interface fetchedPostsDetail {
   [key: string]: string | number;
@@ -31,6 +34,7 @@ export default defineComponent({
   setup() {
     const store = useStore();
     const route = useRoute();
+    const router = useRouter();
     const fetchedPostsDetail = ref<fetchedPostsDetail[]>([]);
 
     console.log(typeof (route.params.id));
@@ -43,8 +47,14 @@ export default defineComponent({
     }
     fetchPostsDetail(route.params.id);
 
+    async function deletePost() {
+      await store.deletePost(route.params.id);
+      console.log('글 삭제 완료');
+      router.push('/list/join');
+    }
+
     return {
-      fetchedPostsDetail, fetchPostsDetail
+      fetchedPostsDetail, fetchPostsDetail, deletePost
     }
   }
 })

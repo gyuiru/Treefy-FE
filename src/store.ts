@@ -82,6 +82,15 @@ export const useStore = defineStore('main', {
         console.log(error);
       }
     },
+    async deletePost(id: string | string[]) {
+      try {
+        console.log('삭제할 글 아이디', id);
+        const response = await axios.delete(`/api/delete/${id}`);
+        console.log(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
     
 
   },
