@@ -11,6 +11,10 @@ interface fetchedPosts {
   [key: string]: string | number;
 }
 
+interface fetchedPostsDetail {
+  [key: string]: string | number;
+}
+
 export const useStore = defineStore('main', {
 
   state: () => ({
@@ -34,7 +38,7 @@ export const useStore = defineStore('main', {
     async fetchPosts(): Promise<fetchedPosts[]>{
       try {
         const response = await axios.get('/api/list');
-        console.log('데이터 성공적으로 가져옴');
+        console.log('글 전체 데이터 성공적으로 가져옴');
         console.log(response.data);
         return response.data;
       } catch (error) {
@@ -42,6 +46,18 @@ export const useStore = defineStore('main', {
         return [];
       }
     },
+    async fetchPostsDetail(id: string | string[]): Promise<fetchedPostsDetail[]>{
+      try {
+        const response = await axios.get(`/api/list/detail/${id}`);
+        console.log('글 상세 데이터 성공적으로 가져옴');
+        console.log(response.data);
+        return response.data;
+      } catch (error) {
+        console.log(error);
+        return [];
+      }
+    },
+    
 
   },
 

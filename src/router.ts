@@ -5,6 +5,7 @@ import Join from './components/Join.vue';
 import Closed from './components/Closed.vue';
 import Faq from './components/Faq.vue';
 import Write from './components/Write.vue';
+import Detail from './components/Detail.vue';
 
 const routes = [
   {
@@ -32,6 +33,10 @@ const routes = [
   {
     path: "/write",
     component: Write,
+  },
+  {
+    path: "/list/detail/:id",
+    component: Detail,
   },
 
 ];
