@@ -15,7 +15,7 @@
     </div>
     <div class="bg-gray-50 mx-60 my-20 h-auto text-center">{{ fetchedPostsDetail[0].content }}</div>
     <div class="text-center">
-      <router-link to="/list/join" class="bg-custom-btn-green hover:bg-custom-btn-green-hover rounded p-3 pl-10 pr-10 m-3 text-white font-pretendard inline-block">목록 보기</router-link>
+      <router-link to="/list/join/1" class="bg-custom-btn-green hover:bg-custom-btn-green-hover rounded p-3 pl-10 pr-10 m-3 text-white font-pretendard inline-block">목록 보기</router-link>
       <button class="bg-custom-btn-green hover:bg-custom-btn-green-hover rounded p-3 pl-10 pr-10 m-3 text-white font-pretendard">지원하기</button>
     </div>
   </div>
@@ -50,7 +50,7 @@ export default defineComponent({
     async function deletePost() {
       await store.deletePost(route.params.id);
       console.log('글 삭제 완료');
-      router.push('/list/join');
+      router.push('/list/join/1');
     }
 
     return {

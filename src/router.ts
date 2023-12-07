@@ -18,7 +18,7 @@ const routes = [
       component: VolunteerProgramsList,
       children: [
         {
-          path: "join",
+          path: "join/:id",
           component: Join,
         },
         {
