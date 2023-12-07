@@ -27,7 +27,7 @@ export const useStore = defineStore('main', {
       title: '',
       content: ''
     } as Post,
-          
+
   }),
   actions: {  //actions
     async setPost(post: Post) {
@@ -39,15 +39,26 @@ export const useStore = defineStore('main', {
         console.log(error);
       }
     },
-    async fetchPosts(): Promise<fetchedPosts[]>{
+    async fetchPosts(id: string): Promise<fetchedPosts[]>{
       try {
-        const response = await axios.get('/api/list');
+        const response = await axios.get(`/api/list?page=${parseInt(id) - 1}&limit=5`);
         console.log('글 전체 데이터 성공적으로 가져옴');
         console.log(response.data);
         return response.data;
       } catch (error) {
         console.log(error);
         return [];
+      }
+    },
+    async fetchTotalPostsCount(): Promise<number>{
+      try {
+        const response = await axios.get('/api/list/count');
+        console.log('전체 글 갯수 성공적으로 가져옴');
+        console.log(response.data);
+        return response.data;
+      } catch (error) {
+        console.log(error);
+        return 0;
       }
     },
     async fetchPostsDetail(id: string | string[]): Promise<fetchedPostsDetail[]>{

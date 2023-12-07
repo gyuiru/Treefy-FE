@@ -25,19 +25,25 @@
       <div v-for="(a,i) in fetchedPosts" :key="i">
         <div class="grid grid-cols-6 p-5">
           <span>{{ fetchedPosts[i].id }}</span>
-          <span @click="$router.push(`detail/${ i + 1 }`)" class="col-span-3">{{ fetchedPosts[i].title }}</span>
+          <span @click="$router.push(`/list/detail/${ fetchedPosts[i].id }`)" class="col-span-3">{{ fetchedPosts[i].title }}</span>
           <span>작성자 미정</span>
           <span>{{ fetchedPosts[i].created_date }}</span>
         </div>
         <div class="h-0.5 w-full bg-custom-gray border-solid opacity-10"></div>
+      </div>
+      <div class="font-pretendard text-xl text-custom-gray mt-10">
+        <button @click="prevPage" class="w-14 h-14 bg-gray-200 rounded-full hover:bg-slate-300 hover:text-gray-700 mr-10">&lt;</button>
+        <router-link :to="`/list/join/${ i + 1 }`" v-for="(a, i) in totalPages" :key="i" class="p-5 hover:underline">{{ i + 1 }}</router-link>
+        <button @click="nextPage" class="w-14 h-14 bg-gray-200 rounded-full hover:bg-slate-300 hover:text-gray-700 ml-10">&gt;</button>
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { defineComponent, ref, computed, watch, onMounted } from 'vue';
 import { useStore } from '../store';
+import { useRoute, useRouter } from 'vue-router';
 
 interface fetchedPosts {
   [key: string]: string | number;
@@ -46,19 +52,75 @@ interface fetchedPosts {
 export default defineComponent({
   setup() {
     const store = useStore();
+    const route = useRoute();
+    const router = useRouter();
     const fetchedPosts = ref<fetchedPosts[]>([]);
+    let paramsId: string;
+    let totalPostsCount = ref<number>(0);
+    let totalPages = computed(() => Math.ceil(totalPostsCount.value / 5));
+
+    if (typeof route.params.id === 'string') {
+      paramsId = route.params.id;
+    } else if (Array.isArray(route.params.id)) {
+      paramsId = route.params.id[0];
+    } else {
+      paramsId = '1';
+    }
+
+    async function fetchTotalPostsCount() {
+      try {
+        totalPostsCount.value = await store.fetchTotalPostsCount();
+        console.log(totalPostsCount.value);
+      } catch (error) {
+        console.error("Failed to fetch total posts count:", error);
+      }
+    }
 
     async function fetchPosts() {
-      fetchedPosts.value = await store.fetchPosts();
-      console.log(fetchedPosts.value);
+      try {
+        fetchedPosts.value = await store.fetchPosts(paramsId);
+        console.log(fetchedPosts.value);
+      } catch (error) {
+        console.error("Failed to fetch posts:", error);
+      }
     }
-    fetchPosts();
+
+    async function nextPage() {
+      try {
+        if (typeof route.params.id === 'string' && parseInt(route.params.id) < totalPages.value) {
+          router.push(`/list/join/${ parseInt(route.params.id) + 1 }`);
+        }
+      } catch (error) {
+        console.error("Failed to fetch posts:", error);
+      }
+    }
+
+    async function prevPage() {
+      try {
+        if (typeof route.params.id === 'string' && parseInt(route.params.id) > 1) {
+          router.push(`/list/join/${ parseInt(route.params.id) - 1 }`);
+        }
+      } catch (error) {
+        console.error("Failed to fetch posts:", error);
+      }
+    }
+    
+    watch(() => route.params.id.toString(), async (newParamsId) => {
+      paramsId = newParamsId;
+      fetchedPosts.value = await store.fetchPosts(paramsId);
+    });
+
+    onMounted(async () => {
+      await fetchTotalPostsCount();
+      await fetchPosts();
+    });
+
 
     return {
-      fetchedPosts,
+      fetchedPosts, fetchTotalPostsCount, totalPostsCount, totalPages, nextPage, prevPage
     }
   }
-})
+});
 </script>
 
 <style>
