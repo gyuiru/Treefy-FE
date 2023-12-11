@@ -7,6 +7,8 @@ import Faq from './components/Faq.vue';
 import Write from './components/Write.vue';
 import Detail from './components/Detail.vue';
 import Edit from './components/Edit.vue';
+import SignUp from './components/SignUp.vue';
+import Login from './components/Login.vue';
 
 const routes = [
   {
@@ -42,6 +44,14 @@ const routes = [
   {
     path: "/edit/:id",
     component: Edit,
+  },
+  {
+    path: "/signup",
+    component: SignUp,
+  },
+  {
+    path: "/login",
+    component: Login,
   },
 
 ];

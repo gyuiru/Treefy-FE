@@ -19,6 +19,17 @@ interface FetchedPostsEdit {
   [key: string]: string | number;
 }
 
+interface User {
+  username: string;
+  password: string;
+}
+
+interface UserInfo {
+  username: string;
+  password: string;
+  nickname: string;
+}
+
 export const useStore = defineStore('main', {
 
   state: () => ({
@@ -101,7 +112,25 @@ export const useStore = defineStore('main', {
       } catch (error) {
         console.log(error);
       }
-    }
+    },
+    async signUp(userInfo: UserInfo) {
+      try {
+        console.log('회원가입 시도');
+        const response = await axios.post('/api/signup', userInfo);
+        console.log(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async login(user: User) {
+      try {
+        console.log('로그인 시도');
+        const response = await axios.post('/api/login');
+        console.log(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    },
     
 
   },
