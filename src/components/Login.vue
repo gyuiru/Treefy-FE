@@ -26,8 +26,8 @@ export default defineComponent({
     const router = useRouter();
     const user = reactive({ username: '', password: ''});
 
-    function submitLogin() {
-      store.login(user);
+    async function submitLogin() {
+      await store.login(user);
       console.log(store.login);
       router.push('/');
     }

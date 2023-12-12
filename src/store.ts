@@ -19,7 +19,7 @@ interface FetchedPostsEdit {
   [key: string]: string | number;
 }
 
-interface User {
+interface LoginUserInfo {
   username: string;
   password: string;
 }
@@ -122,10 +122,10 @@ export const useStore = defineStore('main', {
         console.log(error);
       }
     },
-    async login(user: User) {
+    async login(user: LoginUserInfo) {
       try {
-        console.log('로그인 시도');
-        const response = await axios.post('/api/login');
+        console.log('로그인 시도', user);
+        const response = await axios.post('/api/login', user);
         console.log(response.data);
       } catch (error) {
         console.log(error);
