@@ -131,6 +131,17 @@ export const useStore = defineStore('main', {
         console.log(error);
       }
     },
+    async fetchUserInfo() {
+      try {
+        console.log('마이페이지 접속 시도');
+        const response = await axios.get('/api/mypage');
+        console.log(response.data);
+        return response.data;
+      } catch (error) {
+        console.log(error);
+        return null;
+      }
+    },
     
 
   },
