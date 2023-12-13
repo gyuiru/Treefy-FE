@@ -9,6 +9,7 @@ import Detail from './components/Detail.vue';
 import Edit from './components/Edit.vue';
 import SignUp from './components/SignUp.vue';
 import Login from './components/Login.vue';
+import MyPage from './components/my_page/MyPage.vue';
 
 const routes = [
   {
@@ -52,6 +53,10 @@ const routes = [
   {
     path: "/login",
     component: Login,
+  },
+  {
+    path: "/mypage",
+    component: MyPage,
   },
 
 ];

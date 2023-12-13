@@ -10,7 +10,7 @@
         <p class="font-pretendard text-custom-gray pr-10">소식</p>
         <router-link to="/list/join/1"><p class="font-pretendard text-custom-gray pr-10">봉사신청</p></router-link>
         <p class="font-pretendard text-custom-gray pr-10">갤러리</p>
-        <p class="font-pretendard text-custom-gray pr-10">마이페이지</p>
+        <router-link to="/mypage" class="font-pretendard text-custom-gray pr-10">마이페이지</router-link>
         <router-link to="/signup" class="font-pretendard text-custom-gray pr-10">Sign up</router-link>
         <router-link to="/login" class="bg-custom-btn-green rounded-lg p-3 pl-7 pr-7 text-white">Login</router-link>
       </div>
