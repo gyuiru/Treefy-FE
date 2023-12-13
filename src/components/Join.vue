@@ -105,7 +105,7 @@ export default defineComponent({
       }
     }
     
-    watch(() => route.params.id.toString(), async (newParamsId) => {
+    watch(() => route.params.id ? route.params.id.toString() : '', async (newParamsId) => {
       paramsId = newParamsId;
       fetchedPosts.value = await store.fetchPosts(paramsId);
     });
